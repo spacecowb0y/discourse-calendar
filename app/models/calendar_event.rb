@@ -5,7 +5,10 @@ class CalendarEvent < ActiveRecord::Base
   belongs_to :post
   belongs_to :user
 
-  def self.update(post)
+  def self.update(post, delete_after_hours: nil)
+    if delete_after_hours.nil?
+      delete_after_hours = CalendarEvent.where(post_id: post.id)&.first&.delete_after_hours
+    end
     CalendarEvent.where(post_id: post.id).destroy_all
 
     dates = post.local_dates
@@ -44,7 +47,8 @@ class CalendarEvent < ActiveRecord::Base
       description: description,
       start_date: from,
       end_date: to,
-      recurrence: recurrence
+      recurrence: recurrence,
+      delete_after_hours: delete_after_hours
     )
 
     post.publish_change_to_clients!(:calendar_change)

@@ -24,6 +24,7 @@ module DiscourseCalendar
       calendar = extract(post)
       return destroy(post) if calendar.size != 1
       calendar = calendar.first
+      Rails.logger.warn "calendar -- #{calendar.inspect}"
 
       post.custom_fields[DiscourseCalendar::CALENDAR_CUSTOM_FIELD] = calendar.delete("type") || "dynamic"
       post.save_custom_fields

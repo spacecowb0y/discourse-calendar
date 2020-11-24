@@ -52,6 +52,13 @@ const calendarRule = {
         info.attrs.hiddenDays,
       ]);
     }
+
+    if (info.attrs.autoDeleteHours) {
+      mainCalendarDivToken.attrs.push([
+        "data-calendar-delete-hours",
+        info.attrs.autoDeleteHours,
+      ]);
+    }
   },
 
   after: function (state) {

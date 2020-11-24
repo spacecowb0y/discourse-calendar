@@ -7,9 +7,6 @@ module Jobs
     def execute(args)
       return unless SiteSetting.calendar_enabled
 
-      delay = SiteSetting.delete_expired_event_posts_after
-      return if delay < 0
-
       calendar_topic_ids = Post
         .joins(:_custom_fields)
         .where(post_custom_fields: { name: DiscourseCalendar::CALENDAR_CUSTOM_FIELD })
@@ -26,6 +23,9 @@ module Jobs
 
       events.each do |event|
         next if event.recurrence
+
+        delay = event.delete_after_hours
+        next if delay.blank? || delay < 0
 
         end_date = event.end_date ? event.end_date : event.start_date + 24.hours
         next if end_date + delay.hour > Time.zone.now
