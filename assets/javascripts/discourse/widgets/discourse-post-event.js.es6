@@ -214,14 +214,14 @@ export default createWidget("discourse-post-event", {
         }}
       </header>
 
-        <section class="event-actions">
-          {{attach
-            widget="discourse-post-event-status"
-            attrs=(hash
-              watchingInvitee=this.state.eventModel.watching_invitee
-            )
-          }}
-        </section>
+      <section class="event-actions">
+        {{attach
+          widget="discourse-post-event-status"
+          attrs=(hash
+            watchingInvitee=this.state.eventModel.watching_invitee
+          )
+        }}
+      </section>
 
       {{#if this.state.eventModel.url}}
         <hr />
