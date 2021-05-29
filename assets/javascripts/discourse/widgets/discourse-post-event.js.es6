@@ -95,6 +95,7 @@ export default createWidget("discourse-post-event", {
   },
 
   changeWatchingInviteeStatus(status) {
+    console.log(this.currentUser, this.state.eventModel, this.state.eventModel.can_act_on_discourse_post_event);
     if (this.state.eventModel.watching_invitee) {
       this.store.update(
         "discourse-post-event-invitee",
@@ -171,7 +172,7 @@ export default createWidget("discourse-post-event", {
         this.currentUser &&
         this.state.eventModel.can_act_on_discourse_post_event,
     };
-    console.log(this.currentUser, this.state.eventModel, this.state.eventModel.can_act_on_discourse_post_event);
+    
   },
 
   template: hbs`
