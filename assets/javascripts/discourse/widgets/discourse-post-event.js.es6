@@ -214,7 +214,6 @@ export default createWidget("discourse-post-event", {
         }}
       </header>
 
-      {{#if state.eventModel.can_update_attendance}}
         <section class="event-actions">
           {{attach
             widget="discourse-post-event-status"
@@ -223,7 +222,6 @@ export default createWidget("discourse-post-event", {
             )
           }}
         </section>
-      {{/if}}
 
       {{#if this.state.eventModel.url}}
         <hr />
