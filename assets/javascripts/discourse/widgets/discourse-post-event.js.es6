@@ -98,7 +98,9 @@ export default createWidget("discourse-post-event", {
     console.log(this.currentUser, this.state.eventModel, this.state.eventModel.can_act_on_discourse_post_event);
     
     if (!this.currentUser) { 
-      showModal("createAccount", { modalClass: "create-account" });
+      this.sendWidgetAction("createAccount");
+      $.cookie("destination_url", window.location.href);
+      return;
     }
     
     if (this.state.eventModel.watching_invitee) {
