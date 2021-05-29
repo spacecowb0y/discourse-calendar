@@ -96,7 +96,8 @@ export default createWidget("discourse-post-event", {
 
   changeWatchingInviteeStatus(status) {    
     if (!this.currentUser) { 
-      showModal("createAccount");
+      showModal("createAccount", { modalClass: "create-account" });
+      return;
     }
     
     if (this.state.eventModel.watching_invitee) {
