@@ -94,9 +94,7 @@ export default createWidget("discourse-post-event", {
     );
   },
 
-  changeWatchingInviteeStatus(status) {
-    console.log(this.currentUser, this.state.eventModel, this.state.eventModel.can_act_on_discourse_post_event);
-    
+  changeWatchingInviteeStatus(status) {    
     if (!this.currentUser) { 
       showModal("createAccount");
     }
