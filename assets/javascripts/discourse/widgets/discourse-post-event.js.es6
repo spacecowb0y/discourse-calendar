@@ -99,8 +99,6 @@ export default createWidget("discourse-post-event", {
     
     if (!this.currentUser) { 
       showModal("createAccount");
-      $.cookie("destination_url", window.location.href);
-      return;
     }
     
     if (this.state.eventModel.watching_invitee) {
